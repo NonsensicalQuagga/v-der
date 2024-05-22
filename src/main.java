@@ -22,7 +22,7 @@ public class main {
                 .build();
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> postResponse = httpClient.send(weatherGet, HttpResponse.BodyHandlers.ofString());
-       // System.out.println(postResponse.body());
+        //System.out.println(postResponse.body());
 
 
         ArrayList<String> storage = new ArrayList<>();
@@ -67,14 +67,14 @@ public class main {
                             j++;
                         }
                         temp.setLength(temp.length()-1);
-                        storage.add("Temperature: " + kelvinConversion(Double.parseDouble( temp.toString())) + "°C");
+                        storage.add("Temperature: " +Math.round(kelvinConversion(Double.parseDouble( temp.toString()))) + "°C");
                         j+=14;
                         temp.setLength(0);
                         while (postResponse.body().charAt(i + j) != pog) {
                             temp.append(postResponse.body().charAt(i + j));
                             j++;
                         }
-                        storage.add("Feels like: " + kelvinConversion(Double.parseDouble( temp.toString())) + "°C");
+                        storage.add("Feels like: " +Math.round(kelvinConversion(Double.parseDouble( temp.toString()))) + "°C");
 
                         i = i + j;
                         in.setLength(0);
